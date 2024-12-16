@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Churn Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5; /* Light purple background */
+            color: #4a148c; /* Dark purple text */
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #6a1b9a;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #4a148c;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #7b1fa2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #6a1b9a;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            color: #6a1b9a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Churn Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="employee_name">Employee Name:</label>
+        <input type="text" name="employee_name" placeholder="Enter employee's name" required>
+
+        <label for="satisfaction_level">Satisfaction Level:</label>
+        <input type="number" step="0.01" name="satisfaction_level" placeholder="0.0 - 1.0" required>
+
+        <label for="last_evaluation">Last Evaluation:</label>
+        <input type="number" step="0.01" name="last_evaluation" placeholder="0.0 - 1.0" required>
+
+        <label for="number_project">Number of Projects:</label>
+        <input type="number" name="number_project" placeholder="e.g., 1-10" required>
+
+        <label for="average_montly_hours">Average Monthly Hours:</label>
+        <input type="number" name="average_montly_hours" placeholder="e.g., 100-300" required>
+
+        <label for="time_spend_company">Time Spent in Company (Years):</label>
+        <select name="time_spend_company" required>
+            <option value="" disabled selected>Select years</option>
+            <option value="1">1 Year</option>
+            <option value="2">2 Years</option>
+            <option value="3">3 Years</option>
+            <option value="4">4 Years</option>
+            <option value="5">5 Years</option>
+        </select>
+
+        <label for="Work_accident">Work Accident:</label>
+        <select name="Work_accident" required>
+            <option value="" disabled selected>Choose an option</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="promotion_last_5years">Promotion in Last 5 Years:</label>
+        <select name="promotion_last_5years" required>
+            <option value="" disabled selected>Choose an option</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="Departments">Department:</label>
+        <select name="Departments" required>
+            <option value="" disabled selected>Select department</option>
+            <option value="1">Sales</option>
+            <option value="2">Accounting</option>
+            <option value="3">HR</option>
+            <option value="4">Technical</option>
+            <option value="5">Support</option>
+            <option value="6">Management</option>
+            <option value="7">IT</option>
+            <option value="8">Product Management</option>
+            <option value="9">Marketing</option>
+            <option value="10">R&D</option>
+        </select>
+
+        <label for="salary">Salary Level:</label>
+        <select name="salary" required>
+            <option value="" disabled selected>Select salary level</option>
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">
+        <h2>{{ prediction_text }}</h2>
+    </div>
+    {% endif %}
+</body>
+</html>
